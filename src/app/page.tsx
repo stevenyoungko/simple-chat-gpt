@@ -1,3 +1,10 @@
-export default function Page() {
-  return <h1>Hello, Next.js!</h1>;
-}
+import React from "react";
+import { Button } from "antd";
+
+const Home = () => (
+  <div className="App">
+    <Button type="link">Button</Button>
+  </div>
+);
+
+export default Home;
