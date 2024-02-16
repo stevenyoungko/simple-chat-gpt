@@ -1,12 +1,14 @@
 "use client";
 import { PropsWithChildren } from "react";
 import { ConfigProvider, theme } from "antd";
+import useAntConfig from "@/hooks/useAntConfig";
 
-const { defaultAlgorithm } = theme;
+const { defaultAlgorithm, darkAlgorithm } = theme;
 
 const AntConfigProvider = ({ children }: PropsWithChildren) => {
+  const { isDarkMode } = useAntConfig();
   const themeConfig = {
-    algorithm: defaultAlgorithm,
+    algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
     token: {},
     components: {},
   };
