@@ -3,14 +3,14 @@ import { create } from "zustand";
 interface CommonType {
   openDrawer: boolean;
   openSetting: boolean;
-  toggleDrawler: (bool?: boolean) => void;
+  toggleDrawer: (bool?: boolean) => void;
   toggleSetting: (bool?: boolean) => void;
 }
 
 const useCommon = create<CommonType>()((set, get) => ({
   openDrawer: false,
   openSetting: false,
-  toggleDrawler: (bool?: boolean) => {
+  toggleDrawer: (bool?: boolean) => {
     const { openDrawer } = get();
     set({ openDrawer: typeof bool === "boolean" ? bool : !openDrawer });
   },
