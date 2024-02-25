@@ -3,9 +3,13 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { Space } from "antd";
 import useCommon from "@/hooks/useCommon";
+import useAntConfig from "@/hooks/useAntConfig";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 const Header = () => {
   const { toggleDrawer, toggleSetting } = useCommon();
+  const { isDarkMode, toggleDarkMode } = useAntConfig();
+
   return (
     <div className="flex items-center h-full">
       <div
@@ -18,6 +22,7 @@ const Header = () => {
         Simple ChatGPT
       </div>
       <Space className="ml-auto">
+        <ThemeSwitch isDark={isDarkMode} onChange={() => toggleDarkMode()} />
         <div
           className="flex items-center icon-text"
           onClick={() => toggleSetting(true)}

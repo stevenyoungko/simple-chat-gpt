@@ -8,11 +8,10 @@ enum ThemeMode {
 
 type useAntConfigType = {
   isDarkMode: boolean;
-  toggleDarkMode: (isDark: boolean) => void;
+  toggleDarkMode: (isDark?: boolean) => void;
   initialize: () => void;
 };
 
-const localThemeKey = "chat_gpt_theme";
 const getSystemTheme = () => {
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
   return matchMedia.matches ? ThemeMode.Dark : ThemeMode.Light;
@@ -21,14 +20,25 @@ const getSystemTheme = () => {
 const useAntConfig = create<useAntConfigType>((set, get) => ({
   isDarkMode: false,
 
-  toggleDarkMode: (isDark: boolean) => {
-    const isDarkMode = isDark || !get().isDarkMode;
+  toggleDarkMode: (isDark?: boolean) => {
+    const next = typeof isDark === "boolean" ? isDark : !get().isDarkMode;
+    const nextTheme = next ? ThemeMode.Dark : ThemeMode.Light;
+    const prevTheme = next ? ThemeMode.Light : ThemeMode.Dark;
+    set({
+      isDarkMode: next,
+    });
+
+    // for Tailwindcss
+    const doc = document.documentElement || document.body;
+    if (doc.classList.contains(prevTheme)) {
+      doc.classList.remove(prevTheme);
+    }
+    doc.classList.add(nextTheme);
   },
 
   initialize: () => {
     const { toggleDarkMode } = get();
-    const defaultTheme =
-      localStorage.getItem(localThemeKey) || getSystemTheme();
+    const defaultTheme = getSystemTheme();
     toggleDarkMode(defaultTheme === ThemeMode.Dark);
   },
 }));
