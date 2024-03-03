@@ -1,5 +1,6 @@
 import { Input } from "antd";
-import React, { useState, PropsWithChildren } from "react";
+import React, { useState, PropsWithChildren, useEffect } from "react";
+import useInput from "@/hooks/useInput";
 
 interface EditableTextProps extends PropsWithChildren {
   label: string;
@@ -14,19 +15,23 @@ const EditableText = ({
   onClick,
   onConfirm,
 }: EditableTextProps) => {
+  const [value, setValue, handleValue] = useInput(label);
   const [edit, setEdit] = useState(false);
-  const [input, setInput] = useState(label);
 
   const handleConfirm = () => {
-    onConfirm(input);
+    onConfirm(value);
     setEdit(false);
   };
+
+  useEffect(() => {
+    setValue(label);
+  }, [label, setValue]);
 
   return edit ? (
     <Input
       className={`${className} text-black bg-white dark:bg-white`}
-      value={input}
-      onChange={(e) => setInput(e.target.value)}
+      value={value}
+      onChange={handleValue}
       onBlur={handleConfirm}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
