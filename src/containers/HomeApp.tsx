@@ -2,11 +2,19 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import useAntConfig from "@/hooks/useAntConfig";
 import useCommon from "@/hooks/useCommon";
-import { Input, Modal } from "antd";
+import { Drawer, Input, Modal } from "antd";
+import MySidebar from "@/containers/Sidebar";
 
 const HomeApp = ({ children }: PropsWithChildren) => {
   const { initialize: initializeTheme } = useAntConfig();
-  const { openApiKeyModal, apiKey, setApiKeyModal, setApiKey } = useCommon();
+  const {
+    openApiKeyModal,
+    apiKey,
+    openDrawer,
+    setApiKeyModal,
+    setApiKey,
+    toggleDrawer,
+  } = useCommon();
 
   useEffect(() => {
     initializeTheme();
@@ -32,6 +40,19 @@ const HomeApp = ({ children }: PropsWithChildren) => {
           before entering the api key.
         </p>
       </Modal>
+
+      <Drawer
+        rootClassName="md:hidden"
+        className="[&>.ant-drawer-body]:bg-gray-100 dark:[&>.ant-drawer-body]:bg-gray-800"
+        placement="left"
+        title="Chat History"
+        width={250}
+        open={openDrawer}
+        onClose={() => toggleDrawer(false)}
+      >
+        <MySidebar onClose={() => toggleDrawer(false)} />
+      </Drawer>
+
       {children}
     </>
   );
