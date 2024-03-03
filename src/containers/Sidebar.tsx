@@ -2,13 +2,16 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "antd";
 import React, { PropsWithChildren } from "react";
+import useMessage from "@/hooks/useMessages";
 
 interface SidebarProps extends PropsWithChildren {
   onClose?: () => void;
 }
 
 const Sidebar = ({ onClose }: SidebarProps) => {
-  return (
+  const { isInit } = useMessage();
+
+  return isInit ? (
     <div className="h-full px-4 py-6 overflow-auto">
       <div>
         <Button
@@ -28,6 +31,8 @@ const Sidebar = ({ onClose }: SidebarProps) => {
         </Button>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 
