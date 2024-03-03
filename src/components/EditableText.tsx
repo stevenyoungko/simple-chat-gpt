@@ -41,8 +41,8 @@ const EditableText = ({
       className={className}
     >
       <div
+        className="line-clamp-2"
         style={{ wordWrap: "break-word", wordBreak: "break-word" }}
-        className={className ?? ""}
       >
         {label}
       </div>
