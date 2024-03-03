@@ -6,7 +6,7 @@ type useMessagesType = {
 };
 
 const useMessages = create<useMessagesType>((set) => ({
-  isInit: false,
+  isInit: true,
   initialize: () => {
     set({
       isInit: true,

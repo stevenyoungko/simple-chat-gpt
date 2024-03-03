@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["antd", "iconify", "Sider", "Tailwindcss", "zustand"]
+  "cSpell.words": [
+    "antd",
+    "iconify",
+    "Popconfirm",
+    "Sider",
+    "Tailwindcss",
+    "zustand"
+  ]
 }
