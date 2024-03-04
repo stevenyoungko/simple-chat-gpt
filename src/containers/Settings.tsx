@@ -1,19 +1,27 @@
-import React, { useState, PropsWithChildren } from "react";
-import { Button, Form, Input, Modal, Space } from "antd";
+import { useState } from "react";
+import { Button, Form, Input, Modal, Space, Switch } from "antd";
 import useCommon from "@/hooks/useCommon";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 enum FieldNames {
   Username = "username",
   GptName = "gptname",
+  EnableSystemPrompt = "enableSystemPrompt",
+  Role = "role",
+  GoodAt = "goodAt",
+  Topics = "topics",
 }
 
-const Settings = ({ children }: PropsWithChildren) => {
+const Settings = () => {
   const [form] = Form.useForm();
-  const { settings } = useCommon();
+  const { settings, computed } = useCommon();
   const initialValues = {
     [FieldNames.Username]: settings.username,
     [FieldNames.GptName]: settings.gptname,
+    [FieldNames.EnableSystemPrompt]: settings.enableSystemPrompt,
+    [FieldNames.Role]: settings.role,
+    [FieldNames.GoodAt]: settings.goodAt,
+    [FieldNames.Topics]: settings.topics,
   };
   const [openModal, setOpenModal] = useState(false);
 
@@ -55,6 +63,32 @@ const Settings = ({ children }: PropsWithChildren) => {
             <Input placeholder="What AI name you like?" />
           </Form.Item>
         </h3>
+
+        <h3 className="mb-4">System Prompt</h3>
+        <Form.Item
+          name={FieldNames.EnableSystemPrompt}
+          label=""
+          className="mb-0"
+        >
+          <Switch checkedChildren="Enabled" unCheckedChildren="Closed" />
+        </Form.Item>
+
+        <p className="text-xs">
+          *System Prompt will help you ask question with more focused and
+          accurate result, but cost more tokens(fee).
+        </p>
+
+        <Form.Item name={FieldNames.Role} label="Role">
+          <Input placeholder="I am a professional ..." />
+        </Form.Item>
+
+        <Form.Item name={FieldNames.GoodAt} label="Good At">
+          <Input.TextArea rows={3} placeholder="I am good at ..." />
+        </Form.Item>
+
+        <Form.Item name={FieldNames.Topics} label="Topics">
+          <Input.TextArea rows={3} placeholder="Question domain" />
+        </Form.Item>
       </Form>
 
       <Modal
@@ -66,15 +100,7 @@ const Settings = ({ children }: PropsWithChildren) => {
         <p className="text-red-500 text-xs">
           *System Prompt will placed at the top of all messages
         </p>
-        <div>
-          I want you to act as a professional Programmer. You are good at using
-          Javascript, VueJs, ReactJs, NextJs to create website and CMS. User
-          will provide some topics or questions related to programming and Ant
-          Design, and it will be your job to explain them in easy-to-understand
-          terms.This could include providing step-by-step instructions for
-          solving a problem, demonstrating various techniques with visuals or
-          suggesting online resources for further study.
-        </div>
+        <div>{computed.getPromptDescription}</div>
       </Modal>
     </div>
   );
