@@ -4,6 +4,7 @@ import useAntConfig from "@/hooks/useAntConfig";
 import useCommon from "@/hooks/useCommon";
 import { Drawer, Input, Modal } from "antd";
 import MySidebar from "@/containers/Sidebar";
+import MySetting from "@/containers/Settings";
 
 const HomeApp = ({ children }: PropsWithChildren) => {
   const { initialize: initializeTheme } = useAntConfig();
@@ -11,9 +12,11 @@ const HomeApp = ({ children }: PropsWithChildren) => {
     openApiKeyModal,
     apiKey,
     openDrawer,
+    openSetting,
     setApiKeyModal,
     setApiKey,
     toggleDrawer,
+    toggleSetting,
   } = useCommon();
 
   useEffect(() => {
@@ -51,6 +54,17 @@ const HomeApp = ({ children }: PropsWithChildren) => {
         onClose={() => toggleDrawer(false)}
       >
         <MySidebar onClose={() => toggleDrawer(false)} />
+      </Drawer>
+
+      <Drawer
+        className="[&>.ant-drawer-body]:bg-gray-100 dark:[&>.ant-drawer-body]:bg-gray-800 [&>.ant-drawer-body]:p-4"
+        placement="right"
+        title="Settings"
+        width={350}
+        open={openSetting}
+        onClose={() => toggleSetting(false)}
+      >
+        <MySetting />
       </Drawer>
 
       {children}

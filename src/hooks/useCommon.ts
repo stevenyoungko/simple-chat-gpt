@@ -1,10 +1,16 @@
 import { create } from "zustand";
 
+interface SettingsType {
+  username: string;
+  gptname: string;
+}
+
 interface CommonType {
   openDrawer: boolean;
   openSetting: boolean;
   openApiKeyModal: boolean;
   apiKey?: string;
+  settings: SettingsType;
   toggleDrawer: (bool?: boolean) => void;
   toggleSetting: (bool?: boolean) => void;
   setApiKeyModal: (bool: boolean) => void;
@@ -16,6 +22,10 @@ const useCommon = create<CommonType>()((set, get) => ({
   openSetting: false,
   openApiKeyModal: false,
   apiKey: undefined,
+  settings: {
+    username: "Me",
+    gptname: "ChatGPT",
+  },
   toggleDrawer: (bool?: boolean) => {
     const { openDrawer } = get();
     set({ openDrawer: typeof bool === "boolean" ? bool : !openDrawer });
