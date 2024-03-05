@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form, Input, Modal, Space, Switch } from "antd";
+import { Button, Form, Input, Modal, Space, Switch, message } from "antd";
 import useCommon from "@/hooks/useCommon";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -14,7 +14,7 @@ enum FieldNames {
 
 const Settings = () => {
   const [form] = Form.useForm();
-  const { settings, computed } = useCommon();
+  const { settings, computed, setSettings, toggleSetting } = useCommon();
   const initialValues = {
     [FieldNames.Username]: settings.username,
     [FieldNames.GptName]: settings.gptname,
@@ -25,7 +25,11 @@ const Settings = () => {
   };
   const [openModal, setOpenModal] = useState(false);
 
-  const handleSubmit = (values: Record<FieldNames, any>) => {};
+  const handleSubmit = (values: Record<FieldNames, any>) => {
+    setSettings(values);
+    toggleSetting(false);
+    message.success("New settings applied");
+  };
 
   return (
     <div className="text-white">

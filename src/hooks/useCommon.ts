@@ -22,6 +22,7 @@ interface CommonType {
   toggleSetting: (bool?: boolean) => void;
   setApiKeyModal: (bool: boolean) => void;
   setApiKey: (key: string) => void;
+  setSettings: (newSetting: SettingsType) => void;
 }
 
 const useCommon = create<CommonType>()((set, get) => ({
@@ -56,6 +57,15 @@ const useCommon = create<CommonType>()((set, get) => ({
   },
   setApiKeyModal: (bool: boolean) => set({ openApiKeyModal: bool }),
   setApiKey: (key: string) => set({ apiKey: key }),
+  setSettings: (newSettings: SettingsType) => {
+    const { settings } = get();
+    set({
+      settings: {
+        ...settings,
+        ...newSettings,
+      },
+    });
+  },
 }));
 
 export default useCommon;
