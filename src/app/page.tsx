@@ -6,6 +6,7 @@ import AntConfigProvider from "../context/antContext";
 import HomeApp from "@/containers/HomeApp";
 import MyHeader from "@/containers/Header";
 import MySidebar from "@/containers/Sidebar";
+import MessageBoard from "@/containers/MessageBoard";
 
 const Home = () => {
   return (
@@ -19,7 +20,9 @@ const Home = () => {
             <Sider className="w-1/4 hidden md:block bg-gray-100 dark:bg-gray-800 block-border border-0 border-r">
               <MySidebar />
             </Sider>
-            <Content>Content</Content>
+            <Content>
+              <MessageBoard />
+            </Content>
           </Layout>
         </HomeApp>
       </Layout>
