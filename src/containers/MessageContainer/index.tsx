@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import useMessages from "@/hooks/useMessages";
 import { Skeleton, Spin } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import useMessages from "@/hooks/useMessages";
+import ChatInput from "./ChatInput";
 
 interface MessageContainer {
   names: {
@@ -19,6 +20,15 @@ const MessageContainer = ({ names, minLength = 8 }: MessageContainer) => {
     initialize();
   }, [initialize]);
 
+  const handleSubmit = async (input: string) => {
+    console.log("input", input);
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("foo");
+      }, 300);
+    });
+  };
+
   return (
     <Spin spinning={!isInit}>
       <div className="relative px-4 py-6 md:px-6">
@@ -34,6 +44,10 @@ const MessageContainer = ({ names, minLength = 8 }: MessageContainer) => {
           <Spin spinning={loading}>
             {loading && <Skeleton className="mt-4" avatar active />}
           </Spin>
+        </div>
+
+        <div className="fixed bottom-12 left-0 md:left-[14%] right-0 max-w-[580px] mx-auto px-4">
+          <ChatInput loading={loading} onSubmit={handleSubmit} />
         </div>
       </div>
     </Spin>
