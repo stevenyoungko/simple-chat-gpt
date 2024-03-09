@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Skeleton, Spin } from "antd";
+import { Skeleton, Spin, message } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useMessages from "@/hooks/useMessages";
 import ChatInput from "./ChatInput";
+import { RoleType } from "@/types/messages";
 
 interface MessageContainer {
   names: {
@@ -14,25 +15,33 @@ interface MessageContainer {
 }
 
 const MessageContainer = ({ names, minLength = 8 }: MessageContainer) => {
-  const { isInit, messages, initialize } = useMessages();
+  const { isInit, messages, initialize, addMessage } = useMessages();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     initialize();
   }, [initialize]);
 
   const handleSubmit = async (input: string) => {
-    console.log("input", input);
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve("foo");
-      }, 300);
-    });
+    if (input.length < minLength) {
+      message.info(
+        "Question is too short, make sure you have enter your question correctly."
+      );
+      return;
+    }
+    const newUserMessage = {
+      role: RoleType.USER,
+      content: input,
+    };
+    addMessage(newUserMessage);
   };
 
   return (
     <Spin spinning={!isInit}>
       <div className="relative px-4 py-6 md:px-6">
         <div className="max-w-[512px] md:max-w-[850px] mx-auto pb-28">
+          {messages.map((item) => (
+            <div key={item.id}>{item.content}</div>
+          ))}
           {messages.length === 0 && (
             <div className="h-[280px] sm:h-[400px] md:h-[600px] flex justify-center items-center select-none">
               <div className="text-center text-gray-500 dark:text-gray-300">
