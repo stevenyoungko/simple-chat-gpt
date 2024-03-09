@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Skeleton, Spin, message } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import useMessages from "@/hooks/useMessages";
+import useMessages, { parseResMessage } from "@/hooks/useMessages";
 import ChatInput from "./ChatInput";
-import { RoleType } from "@/types/messages";
+import { RoleType, SendMessage, RawGPTMessage } from "@/types/messages";
 
 interface MessageContainer {
   names: {
@@ -12,9 +12,14 @@ interface MessageContainer {
     assistant: string;
   };
   minLength?: number;
+  onSendRequest: (message: SendMessage) => Promise<RawGPTMessage | void>;
 }
 
-const MessageContainer = ({ names, minLength = 8 }: MessageContainer) => {
+const MessageContainer = ({
+  names,
+  minLength = 8,
+  onSendRequest,
+}: MessageContainer) => {
   const { isInit, messages, initialize, addMessage } = useMessages();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -33,6 +38,14 @@ const MessageContainer = ({ names, minLength = 8 }: MessageContainer) => {
       content: input,
     };
     addMessage(newUserMessage);
+    setLoading(true);
+    try {
+      const res = await onSendRequest(newUserMessage);
+      addMessage(parseResMessage(res));
+    } catch (error) {
+      console.error("error", error);
+    }
+    setLoading(false);
   };
 
   return (

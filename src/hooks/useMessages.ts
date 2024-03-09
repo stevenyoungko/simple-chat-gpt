@@ -39,3 +39,12 @@ const useMessages = create<useMessagesType>((set, get) => ({
 }));
 
 export default useMessages;
+
+export const parseResMessage = (rawMessage: any): MessageType => {
+  return {
+    id: rawMessage.id,
+    role: RoleType.GPT,
+    content: rawMessage.choices[0].message.content,
+    sentTime: rawMessage.created,
+  };
+};
