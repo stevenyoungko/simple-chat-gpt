@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import useMessages, { parseResMessage } from "@/hooks/useMessages";
 import ChatInput from "./ChatInput";
 import { RoleType, SendMessage, RawGPTMessage } from "@/types/messages";
+import MessageItem from "./MessageItem";
 
 interface MessageContainer {
   names: {
@@ -25,6 +26,10 @@ const MessageContainer = ({
   useEffect(() => {
     initialize();
   }, [initialize]);
+
+  useEffect(() => {
+    console.log("messages", messages);
+  }, [messages]);
 
   const handleSubmit = async (input: string) => {
     if (input.length < minLength) {
@@ -53,7 +58,12 @@ const MessageContainer = ({
       <div className="relative px-4 py-6 md:px-6">
         <div className="max-w-[512px] md:max-w-[850px] mx-auto pb-28">
           {messages.map((item) => (
-            <div key={item.id}>{item.content}</div>
+            <MessageItem
+              key={item.id}
+              names={names}
+              message={item}
+              onDelete={() => {}}
+            />
           ))}
           {messages.length === 0 && (
             <div className="h-[280px] sm:h-[400px] md:h-[600px] flex justify-center items-center select-none">
