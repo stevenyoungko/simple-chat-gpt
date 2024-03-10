@@ -1,5 +1,5 @@
 "use client";
-import React, { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import useAntConfig from "@/hooks/useAntConfig";
 import useCommon from "@/hooks/useCommon";
 import { Drawer, Input, Modal } from "antd";

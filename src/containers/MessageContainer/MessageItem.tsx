@@ -1,6 +1,7 @@
 import { MessageType, RoleType } from "@/types/messages";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import clsx from "clsx";
+import Markdown from "./Markdown";
 
 interface MessageItemProps {
   names: {
@@ -30,7 +31,7 @@ const MessageItem = ({ names, message, onDelete }: MessageItemProps) => {
       </div>
       <div className="pl-10 dark:text-gray-100">
         <h4>{isGPT ? names.assistant : names.user}</h4>
-        <div>{content}</div>
+        <Markdown content={content} />
       </div>
     </div>
   );

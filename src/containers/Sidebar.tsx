@@ -1,5 +1,5 @@
 "use client";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Popconfirm } from "antd";
 import clsx from "clsx";

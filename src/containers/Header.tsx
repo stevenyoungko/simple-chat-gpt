@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Icon } from "@iconify/react";
 import { Space } from "antd";
 import useCommon from "@/hooks/useCommon";

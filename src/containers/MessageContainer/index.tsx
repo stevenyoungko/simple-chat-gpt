@@ -1,5 +1,4 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Skeleton, Spin, message } from "antd";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import useMessages, { parseResMessage } from "@/hooks/useMessages";
