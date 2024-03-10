@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import "./globals.scss";
+import './globals.scss';
+
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 export const metadata: Metadata = {
   title: "Simple Chat GPT",

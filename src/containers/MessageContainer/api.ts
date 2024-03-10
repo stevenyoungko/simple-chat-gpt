@@ -1,4 +1,4 @@
-import { SendMessage } from "@/types/messages";
+import { SendMessage } from '@/types/messages';
 
 interface SendOptions {
   messages: SendMessage[];

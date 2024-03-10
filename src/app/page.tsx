@@ -1,11 +1,13 @@
-import { Layout } from "antd";
-import { Header, Content } from "antd/es/layout/layout";
-import Sider from "antd/es/layout/Sider";
-import AntConfigProvider from "../context/antContext";
-import HomeApp from "@/containers/HomeApp";
-import MyHeader from "@/containers/Header";
-import MySidebar from "@/containers/Sidebar";
-import MessageBoard from "@/containers/MessageBoard";
+import { Layout } from 'antd';
+import { Content, Header } from 'antd/es/layout/layout';
+import Sider from 'antd/es/layout/Sider';
+
+import MyHeader from '@/containers/Header';
+import HomeApp from '@/containers/HomeApp';
+import MessageBoard from '@/containers/MessageBoard';
+import MySidebar from '@/containers/Sidebar';
+
+import AntConfigProvider from '../context/antContext';
 
 const Home = () => {
   return (

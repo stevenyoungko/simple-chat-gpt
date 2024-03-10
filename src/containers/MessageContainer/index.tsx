@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
-import { Skeleton, Spin, message } from "antd";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import useMessages, { parseResMessage } from "@/hooks/useMessages";
-import ChatInput from "./ChatInput";
-import { RoleType, SendMessage, RawGPTMessage } from "@/types/messages";
-import MessageItem from "./MessageItem";
+import { message, Skeleton, Spin } from 'antd';
+import { useEffect, useState } from 'react';
+
+import useMessages, { parseResMessage } from '@/hooks/useMessages';
+import { RawGPTMessage, RoleType, SendMessage } from '@/types/messages';
+import { Icon } from '@iconify/react/dist/iconify.js';
+
+import ChatInput from './ChatInput';
+import MessageItem from './MessageItem';
 
 interface MessageContainer {
   names: {

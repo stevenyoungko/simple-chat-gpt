@@ -1,7 +1,8 @@
 "use client";
-import { PropsWithChildren } from "react";
-import { ConfigProvider, theme } from "antd";
-import useAntConfig from "@/hooks/useAntConfig";
+import { ConfigProvider, theme } from 'antd';
+import { PropsWithChildren } from 'react';
+
+import useAntConfig from '@/hooks/useAntConfig';
 
 const { defaultAlgorithm, darkAlgorithm } = theme;
 

@@ -1,10 +1,11 @@
 "use client";
-import { PropsWithChildren, useEffect } from "react";
-import useAntConfig from "@/hooks/useAntConfig";
-import useCommon from "@/hooks/useCommon";
-import { Drawer, Input, Modal } from "antd";
-import MySidebar from "@/containers/Sidebar";
-import MySetting from "@/containers/Settings";
+import { Drawer, Input, Modal } from 'antd';
+import { PropsWithChildren, useEffect } from 'react';
+
+import MySetting from '@/containers/Settings';
+import MySidebar from '@/containers/Sidebar';
+import useAntConfig from '@/hooks/useAntConfig';
+import useCommon from '@/hooks/useCommon';
 
 const HomeApp = ({ children }: PropsWithChildren) => {
   const { initialize: initializeTheme } = useAntConfig();

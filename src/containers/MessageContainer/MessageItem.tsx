@@ -1,7 +1,9 @@
-import { MessageType, RoleType } from "@/types/messages";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import clsx from "clsx";
-import Markdown from "./Markdown";
+import clsx from 'clsx';
+
+import { MessageType, RoleType } from '@/types/messages';
+import { Icon } from '@iconify/react/dist/iconify.js';
+
+import Markdown from './Markdown';
 
 interface MessageItemProps {
   names: {

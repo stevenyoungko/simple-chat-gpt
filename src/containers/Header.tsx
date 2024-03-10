@@ -1,9 +1,10 @@
 "use client";
-import { Icon } from "@iconify/react";
-import { Space } from "antd";
-import useCommon from "@/hooks/useCommon";
-import useAntConfig from "@/hooks/useAntConfig";
-import ThemeSwitch from "@/components/ThemeSwitch";
+import { Space } from 'antd';
+
+import ThemeSwitch from '@/components/ThemeSwitch';
+import useAntConfig from '@/hooks/useAntConfig';
+import useCommon from '@/hooks/useCommon';
+import { Icon } from '@iconify/react';
 
 const Header = () => {
   const { toggleDrawer, toggleSetting } = useCommon();

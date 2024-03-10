@@ -1,8 +1,9 @@
 "use client";
-import { Button, Input, Space } from "antd";
-import { PropsWithChildren } from "react";
-import useInput from "@/hooks/useInput";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Button, Input, Space } from 'antd';
+import { PropsWithChildren } from 'react';
+
+import useInput from '@/hooks/useInput';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 interface ChatInputType extends PropsWithChildren {
   loading: boolean;

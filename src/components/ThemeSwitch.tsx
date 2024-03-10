@@ -1,5 +1,6 @@
-import Switch from "antd/es/switch";
-import { Icon } from "@iconify/react";
+import Switch from 'antd/es/switch';
+
+import { Icon } from '@iconify/react';
 
 interface ThemeSwitchProps {
   isDark: boolean;

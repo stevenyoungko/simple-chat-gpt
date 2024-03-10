@@ -1,11 +1,13 @@
 "use client";
-import { FloatButton, message } from "antd";
-import { useRef } from "react";
-import MessageContainer from "./MessageContainer";
-import useCommon from "@/hooks/useCommon";
-import useMessages from "@/hooks/useMessages";
-import { SendMessage } from "@/types/messages";
-import { sendUserCompletions } from "./MessageContainer/api";
+import { FloatButton, message } from 'antd';
+import { useRef } from 'react';
+
+import useCommon from '@/hooks/useCommon';
+import useMessages from '@/hooks/useMessages';
+import { SendMessage } from '@/types/messages';
+
+import MessageContainer from './MessageContainer';
+import { sendUserCompletions } from './MessageContainer/api';
 
 const MessageBoard = () => {
   const ref = useRef(null);

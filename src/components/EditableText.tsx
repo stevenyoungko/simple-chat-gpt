@@ -1,6 +1,7 @@
-import { Input } from "antd";
-import { useState, PropsWithChildren, useEffect } from "react";
-import useInput from "@/hooks/useInput";
+import { Input } from 'antd';
+import { PropsWithChildren, useEffect, useState } from 'react';
+
+import useInput from '@/hooks/useInput';
 
 interface EditableTextProps extends PropsWithChildren {
   label: string;

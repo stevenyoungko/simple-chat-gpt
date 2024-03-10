@@ -1,4 +1,4 @@
-import { useState, Dispatch } from "react";
+import { Dispatch, useState } from 'react';
 
 const useInput = <T>(
   initialValue: T

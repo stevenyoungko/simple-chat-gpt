@@ -1,7 +1,8 @@
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import clsx from "clsx";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { useEffect, useState } from "react";
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 interface CopyButtonProps {
   className?: string;

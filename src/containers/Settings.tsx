@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { Button, Form, Input, Modal, Space, Switch, message } from "antd";
-import useCommon from "@/hooks/useCommon";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Button, Form, Input, message, Modal, Space, Switch } from 'antd';
+import { useState } from 'react';
+
+import useCommon from '@/hooks/useCommon';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 enum FieldNames {
   Username = "username",

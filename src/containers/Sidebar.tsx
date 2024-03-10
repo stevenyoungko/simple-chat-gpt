@@ -1,10 +1,11 @@
 "use client";
-import { PropsWithChildren } from "react";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Popconfirm } from "antd";
-import clsx from "clsx";
-import useMessage from "@/hooks/useMessages";
-import EditableText from "@/components/EditableText";
+import { Button, Popconfirm } from 'antd';
+import clsx from 'clsx';
+import { PropsWithChildren } from 'react';
+
+import EditableText from '@/components/EditableText';
+import useMessage from '@/hooks/useMessages';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 interface SidebarProps extends PropsWithChildren {
   onClose?: () => void;

@@ -1,6 +1,7 @@
-import { create } from "zustand";
-import { MessageType, RoleType } from "@/types/messages";
-import { random } from "@/lib/random";
+import { create } from 'zustand';
+
+import { random } from '@/lib/random';
+import { MessageType, RoleType } from '@/types/messages';
 
 type AddMessagePayload = {
   id?: string;
