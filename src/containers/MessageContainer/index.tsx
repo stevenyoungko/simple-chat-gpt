@@ -26,10 +26,6 @@ const MessageContainer = ({
     initialize();
   }, [initialize]);
 
-  useEffect(() => {
-    console.log("messages", messages);
-  }, [messages]);
-
   const handleSubmit = async (input: string) => {
     if (input.length < minLength) {
       message.info(

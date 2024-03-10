@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
 interface MarkdownProps {
@@ -6,11 +5,7 @@ interface MarkdownProps {
 }
 
 const Markdown = ({ content }: MarkdownProps) => {
-  useEffect(() => {
-    console.log("content", content);
-  }, [content]);
-
-  return <ReactMarkdown>{content}</ReactMarkdown>;
+  return <ReactMarkdown className="chat-markdown">{content}</ReactMarkdown>;
 };
 
 export default Markdown;
