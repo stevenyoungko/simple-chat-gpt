@@ -1,7 +1,7 @@
 export enum RoleType {
-  GPT = "assistant",
-  USER = "user",
-  SYSTEM = "system",
+  GPT = 'assistant',
+  USER = 'user',
+  SYSTEM = 'system',
 }
 
 export type MessageType = {
@@ -22,9 +22,9 @@ type GPTChoice = {
     content: string;
   };
   index: number;
-  finish_reason: "stop" | "length";
+  finish_reason: 'stop' | 'length';
   [key: string]: any;
-} 
+};
 
 export type RawGPTMessage = {
   id: string;
@@ -37,4 +37,9 @@ export type RawGPTMessage = {
     total_tokens: number;
   };
   choices: GPTChoice[];
-}
+};
+
+export type Room = {
+  label: string;
+  key: string;
+};

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 import { Button, Popconfirm } from 'antd';
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 
 import EditableText from '@/components/EditableText';
-import useMessage from '@/hooks/useMessages';
+import useMessages, { newRoom } from '@/hooks/useMessages';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 interface SidebarProps extends PropsWithChildren {
@@ -12,8 +12,7 @@ interface SidebarProps extends PropsWithChildren {
 }
 
 const Sidebar = ({ onClose }: SidebarProps) => {
-  const { isInit } = useMessage();
-  const roomHistory = [{ label: "New Chat", key: "123" }];
+  const { isInit, currentRoom, roomHistory, setChatroom } = useMessages();
 
   return isInit ? (
     <div className="h-full px-4 py-6 overflow-auto">
@@ -28,6 +27,7 @@ const Sidebar = ({ onClose }: SidebarProps) => {
             />
           }
           onClick={() => {
+            setChatroom(newRoom());
             onClose?.();
           }}
         >
@@ -40,12 +40,13 @@ const Sidebar = ({ onClose }: SidebarProps) => {
             <EditableText
               className={clsx(
                 `px-4 py-2 pr-10 my-1 rounded-md cursor-pointer`,
-                key === "1234"
-                  ? "bg-sky-200 dark:bg-sky-500"
-                  : "group-hover:bg-gray-200 dark:group-hover:bg-gray-600"
+                key === currentRoom.key
+                  ? 'bg-sky-200 dark:bg-sky-500'
+                  : 'group-hover:bg-gray-200 dark:group-hover:bg-gray-600'
               )}
               label={label}
               onClick={() => {
+                setChatroom({ label, key });
                 onClose?.();
               }}
               onConfirm={(newLabel) => {}}
