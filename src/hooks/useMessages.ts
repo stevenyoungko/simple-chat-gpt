@@ -19,6 +19,7 @@ type useMessagesType = {
   addMessage: (payload: AddMessagePayload) => void;
   deleteMessage: (messageId: string) => void;
   setChatroom: (room: Room) => void;
+  deleteRoom: (targetRoom: Room) => void;
 };
 
 export const localRoomHistoryKey = 'simple-gpt-history';
@@ -108,6 +109,24 @@ const useMessages = create<useMessagesType>((set, get) => ({
       currentRoom: room,
       messages: messages,
     });
+  },
+  deleteRoom: (targetRoom: Room) => {
+    const { currentRoom, roomHistory, setChatroom } = get();
+    const newRoomHistory = [...roomHistory];
+    const roomIndex = newRoomHistory.findIndex(
+      ({ key }) => key === targetRoom.key
+    );
+    if (roomIndex > -1) {
+      newRoomHistory.splice(roomIndex, 1);
+      if (targetRoom.key === currentRoom.key) {
+        setChatroom(newRoomHistory[0] ?? newRoom());
+      }
+    }
+    set({
+      roomHistory: newRoomHistory,
+    });
+    localStorage.removeItem(keyPrefix(targetRoom.key));
+    setRoomHistory(newRoomHistory);
   },
 }));
 

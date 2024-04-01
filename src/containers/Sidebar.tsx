@@ -12,7 +12,10 @@ interface SidebarProps extends PropsWithChildren {
 }
 
 const Sidebar = ({ onClose }: SidebarProps) => {
-  const { isInit, currentRoom, roomHistory, setChatroom } = useMessages();
+  const { isInit, currentRoom, roomHistory, setChatroom, deleteRoom } =
+    useMessages();
+
+  console.log('useMessages', useMessages());
 
   return isInit ? (
     <div className="h-full px-4 py-6 overflow-auto">
@@ -51,7 +54,10 @@ const Sidebar = ({ onClose }: SidebarProps) => {
               }}
               onConfirm={(newLabel) => {}}
             />
-            <Popconfirm title="Are you sure you want to delete this dialog?">
+            <Popconfirm
+              title="Are you sure you want to delete this dialog?"
+              onConfirm={() => deleteRoom({ label, key })}
+            >
               <div className="delete-icon absolute right-1 top-2 hidden group-hover:block icon-text">
                 <Icon width={20} icon="mdi:delete-circle" />
               </div>
