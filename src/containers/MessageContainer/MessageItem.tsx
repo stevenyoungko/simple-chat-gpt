@@ -4,7 +4,7 @@ import { MessageType, RoleType } from '@/types/messages';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 import Markdown from './Markdown';
-import { Space } from 'antd';
+import { Space, Popconfirm } from 'antd';
 import CopyButton from './CopyButton';
 
 interface MessageItemProps {
@@ -45,6 +45,14 @@ const MessageItem = ({ names, message, onDelete }: MessageItemProps) => {
               <CopyButton text={content} />
             </div>
           )}
+          <Popconfirm
+            title="Are you sure to delete this message?"
+            onConfirm={onDelete}
+          >
+            <div className="w-7 h-7 rounded-md inline-flex items-center justify-center text-white bg-gray-400 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-500 cursor-pointer">
+              <Icon width={20} icon="mdi:trash-can-outline" />
+            </div>
+          </Popconfirm>
         </Space>
       </div>
     </div>

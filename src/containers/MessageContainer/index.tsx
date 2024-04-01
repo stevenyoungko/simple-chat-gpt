@@ -22,7 +22,8 @@ const MessageContainer = ({
   minLength = 8,
   onSendRequest,
 }: MessageContainer) => {
-  const { isInit, messages, initialize, addMessage } = useMessages();
+  const { isInit, messages, initialize, addMessage, deleteMessage } =
+    useMessages();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     initialize();
@@ -31,7 +32,7 @@ const MessageContainer = ({
   const handleSubmit = async (input: string) => {
     if (input.length < minLength) {
       message.info(
-        "Question is too short, make sure you have enter your question correctly."
+        'Question is too short, make sure you have enter your question correctly.'
       );
       return;
     }
@@ -45,7 +46,7 @@ const MessageContainer = ({
       const res = await onSendRequest(newUserMessage);
       addMessage(parseResMessage(res));
     } catch (error) {
-      console.error("error", error);
+      console.error('error', error);
     }
     setLoading(false);
   };
@@ -59,7 +60,7 @@ const MessageContainer = ({
               key={item.id}
               names={names}
               message={item}
-              onDelete={() => {}}
+              onDelete={() => deleteMessage(item.id)}
             />
           ))}
           {messages.length === 0 && (

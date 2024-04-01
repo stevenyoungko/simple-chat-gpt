@@ -17,6 +17,7 @@ type useMessagesType = {
   roomHistory: Room[];
   initialize: () => void;
   addMessage: (payload: AddMessagePayload) => void;
+  deleteMessage: (messageId: string) => void;
   setChatroom: (room: Room) => void;
 };
 
@@ -86,6 +87,17 @@ const useMessages = create<useMessagesType>((set, get) => ({
       }
     } catch (err) {
       console.warn(err);
+    }
+  },
+  deleteMessage: (messageId: string) => {
+    const { messages, currentRoom } = get();
+    const targetIdx = messages.findIndex(({ id }) => id === messageId);
+    if (targetIdx > -1) {
+      const newMessages = messages.filter(({ id }) => id !== messageId);
+      set({
+        messages: newMessages,
+      });
+      setRoomMessages(currentRoom.key, newMessages);
     }
   },
   setChatroom: (room: Room) => {
