@@ -1,13 +1,18 @@
+import dynamic from 'next/dynamic';
 import { Layout } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
 
 import MyHeader from '@/containers/Header';
 import HomeApp from '@/containers/HomeApp';
-import MessageBoard from '@/containers/MessageBoard';
+// import MessageBoard from '@/containers/MessageBoard';
 import MySidebar from '@/containers/Sidebar';
 
 import AntConfigProvider from '../context/antContext';
+
+const MessageBoard = dynamic(() => import('@/containers/MessageBoard'), {
+  ssr: false,
+});
 
 const Home = () => {
   return (
