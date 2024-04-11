@@ -1,6 +1,6 @@
-"use client";
-import { Drawer, Input, Modal } from 'antd';
-import { PropsWithChildren, useEffect } from 'react';
+'use client';
+import { Drawer, Input, Modal, Spin } from 'antd';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import MySetting from '@/containers/Settings';
 import MySidebar from '@/containers/Sidebar';
@@ -9,6 +9,7 @@ import useCommon from '@/hooks/useCommon';
 
 const HomeApp = ({ children }: PropsWithChildren) => {
   const { initialize: initializeTheme } = useAntConfig();
+  const [isInit, setIsInit] = useState(false);
   const {
     openApiKeyModal,
     apiKey,
@@ -23,6 +24,7 @@ const HomeApp = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     initializeTheme();
     setApiKeyModal(true);
+    setIsInit(true);
   }, [initializeTheme, setApiKeyModal]);
 
   return (
@@ -68,7 +70,10 @@ const HomeApp = ({ children }: PropsWithChildren) => {
         <MySetting />
       </Drawer>
 
-      {children}
+      <Spin spinning={!isInit}>
+        {!isInit && <div className="min-h-screen"></div>}
+      </Spin>
+      {isInit && children}
     </>
   );
 };
